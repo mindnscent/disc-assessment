@@ -157,6 +157,10 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 .m-D h4{color:var(--disc-d)}.m-I h4{color:var(--disc-i)}
 .m-S h4{color:var(--disc-s)}.m-C h4{color:var(--disc-c)}
 .mini-txt p{font-size:11.5px;color:var(--text-tertiary);line-height:1.4}
+.mini-aroma{font-size:11px;color:var(--text-tertiary);line-height:1.5;margin-top:6px;padding-top:6px;border-top:1px dashed var(--border-light)}
+.mini-aroma .oils{font-weight:600}
+.m-D .mini-aroma .oils{color:var(--disc-d)}.m-I .mini-aroma .oils{color:var(--disc-i)}
+.m-S .mini-aroma .oils{color:var(--disc-s)}.m-C .mini-aroma .oils{color:var(--disc-c)}
 .footer{text-align:center;padding:8px 0 36px}
 .footer span{font-size:11px;color:var(--text-muted);letter-spacing:2px;font-weight:500}
 .toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--sage-600);color:var(--white);padding:9px 18px;border-radius:18px;font-size:12.5px;font-weight:500;z-index:100;animation:toastIn .3s ease,toastOut .3s ease 1.5s forwards;}
@@ -565,9 +569,12 @@ function showResult() {
 
   let miniCards = ['D','I','S','C'].map(function(t) {
     const engName = TYPE_INFO[t].sub.split(' · ')[0];
+    const ar = TYPE_INFO[t].aroma;
     return '<div class="mini m-' + t + '"><div class="mini-icon">' + t + '</div>' +
       '<div class="mini-txt"><h4>' + TYPE_INFO[t].name + ' ' + engName + '</h4>' +
-      '<p>' + TYPE_INFO[t].short + '</p></div></div>';
+      '<p>' + TYPE_INFO[t].short + '</p>' +
+      '<div class="mini-aroma">&#127807; <span class="oils">' + ar.oils.join(' · ') + '</span> &mdash; ' + ar.effect + '</div>' +
+      '</div></div>';
   }).join('');
 
   let kwHtml = info.kws.slice(0,3).concat(secInfo.kws.slice(0,2)).map(function(k) { return '<span class="kw">' + k + '</span>'; }).join('');
@@ -625,25 +632,4 @@ function removeWhiteBg(imgEl, threshold) {
     var d = ctx.getImageData(0, 0, canvas.width, canvas.height);
     var px = d.data;
     for (var i = 0; i < px.length; i += 4) {
-      if (px[i] > threshold && px[i+1] > threshold && px[i+2] > threshold) {
-        px[i+3] = 0;
-      }
-    }
-    ctx.putImageData(d, 0, 0);
-    imgEl.src = canvas.toDataURL('image/png');
-    imgEl.style.mixBlendMode = '';
-  } catch(e) {}
-}
-
-window.addEventListener('load', function() {
-  document.querySelectorAll('.header img').forEach(function(img) {
-    if (img.complete && img.naturalWidth) {
-      removeWhiteBg(img);
-    } else {
-      img.addEventListener('load', function() { removeWhiteBg(img); });
-    }
-  });
-});
-</script>
-</body>
-</html>
+      if (px[i] > thre
