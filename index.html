@@ -211,7 +211,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="step"><div class="step-num">1</div><div class="step-text">각 상황에 4개의 <strong>항목</strong>이 있습니다</div></div>
         <div class="step"><div class="step-num">2</div><div class="step-text"><strong>나와 가장 비슷한 것</strong>부터 차례로 터치하세요 (4→3→2→1 자동 배점)</div></div>
         <div class="step"><div class="step-num">3</div><div class="step-text">너무 오래 고민하지 말고, <strong>직감적으로</strong> 선택하세요</div></div>
-        <div class="step"><div class="step-num" style="background:var(--sage-300);font-size:13px">!</div><div class="step-text">잘못 선택했다면 해당 항목을 다시 터치하면 그 시점부터 다시 고를 수 있어요</div></div>
+        <div class="step"><div class="step-num" style="background:var(--sage-300);font-size:13px">!</div><div class="step-text">잘못 선택했다면 해당 항목을 다시 터치하면 그 시점부터 다시 고를 수 있습니다</div></div>
       </div>
       <input class="name-field" id="nameInput" type="text" placeholder="이름을 입력하세요 (선택)" maxlength="20">
       <button class="btn btn-main" id="startBtn" onclick="startTest()">시작하기</button>
@@ -632,4 +632,25 @@ function removeWhiteBg(imgEl, threshold) {
     var d = ctx.getImageData(0, 0, canvas.width, canvas.height);
     var px = d.data;
     for (var i = 0; i < px.length; i += 4) {
-      if (px[i] > thre
+      if (px[i] > threshold && px[i+1] > threshold && px[i+2] > threshold) {
+        px[i+3] = 0;
+      }
+    }
+    ctx.putImageData(d, 0, 0);
+    imgEl.src = canvas.toDataURL('image/png');
+    imgEl.style.mixBlendMode = '';
+  } catch(e) {}
+}
+
+window.addEventListener('load', function() {
+  document.querySelectorAll('.header img').forEach(function(img) {
+    if (img.complete && img.naturalWidth) {
+      removeWhiteBg(img);
+    } else {
+      img.addEventListener('load', function() { removeWhiteBg(img); });
+    }
+  });
+});
+</script>
+</body>
+</htm
