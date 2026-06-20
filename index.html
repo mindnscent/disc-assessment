@@ -648,4 +648,10 @@ window.addEventListener('load', function() {
     if (img.complete && img.naturalWidth) {
       removeWhiteBg(img);
     } else {
-      img.addEventListener('loa
+      img.addEventListener('load', function() { removeWhiteBg(img); });
+    }
+  });
+});
+</script>
+</body>
+</html>
