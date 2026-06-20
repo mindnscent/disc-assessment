@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>DiSC 유형 자가진단 | MIND N SCENT</title>
+<title>DISC 유형 자가진단 | MIND N SCENT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -198,8 +198,8 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
   <!-- Welcome -->
   <div class="screen active" id="screenWelcome">
     <div class="welcome">
-      <h1>나의 DiSC 행동유형 자가진단</h1>
-      <p class="sub">DiSC Behavioral Style Assessment</p>
+      <h1>나의 DISC 행동유형 자가진단</h1>
+      <p class="sub">DISC Behavioral Style Assessment</p>
       <div class="time">약 7~10분 소요</div>
       <div class="info-box">
         누구나 고유한 행동 스타일이 있습니다.<br>
@@ -240,7 +240,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
   <div class="screen" id="screenResult">
     <div class="result-top">
       <h2 id="resultName"></h2>
-      <p>DiSC 행동유형 진단 결과</p>
+      <p>DISC 행동유형 진단 결과</p>
     </div>
     <div id="resultContent"></div>
     <div class="footer"><span>MIND N SCENT</span></div>
@@ -604,7 +604,7 @@ function showResult() {
       '<div class="aroma-desc">' + aroma.desc + '</div>' +
     '</div>' +
     '<div class="score-box"><h3>유형별 점수</h3>' + scoreRows + '</div>' +
-    '<div class="all-box"><h3>DiSC 4가지 유형</h3>' + miniCards + '</div>' +
+    '<div class="all-box"><h3>DISC 4가지 유형</h3>' + miniCards + '</div>' +
     '<button class="btn btn-outline" onclick="retake()" style="margin-bottom:20px">다시 진단하기</button>';
 
   document.getElementById('resultContent').innerHTML = html;
